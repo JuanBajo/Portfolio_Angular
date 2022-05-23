@@ -1,0 +1,24 @@
+<div class="card-body mat-card" id="exp-card">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h5 style="margin-bottom: 10px;" class="card-title">Experiencia</h5>
+            </div>
+
+            <div class="col">
+                <input *ngIf="edicion " class="btn-actions" type="image" src="../../../assets/img/add.png">
+            </div>
+        </div>
+        <div *ngFor="let exp of experiencias" class=" row ">
+            <div class="col-10 ">
+                <p>{{ exp.fechaInicio | date: "yyyy" + " - "}}{{ exp.fechaFin | date: "yyyy" +": "}}{{exp.empresa + ": "}}{{exp.puesto}}</p>
+
+            </div>
+            <div *ngIf="edicion " class="col">
+                <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png">
+                <input class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png ">
+            </div>
+        </div>
+
+    </div>
+</div>

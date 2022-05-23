@@ -1,0 +1,14 @@
+<div class="card-body mat-card" id="about-card">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-11">
+                <h5 class="card-title">Acerca de</h5>
+                <p id="pAboutText" class="w-100">{{ txtAbout }}</p>
+            </div>
+
+            <div class="col">
+                <input *ngIf="edicion" onclick="mostrarEditAbout();" class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png" id="btnEditAbout">
+            </div>
+        </div>
+    </div>
+</div>

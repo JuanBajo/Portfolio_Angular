@@ -1,0 +1,49 @@
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-0 mb-4 border-bottom header">
+    <a href="https://argentinaprograma.inti.gob.ar/" target="_blank" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <img class="header-image" src="../../../assets/img/APLogo-20-20.png">
+        <span class="header-text">#YoProgramo</span>
+    </a>
+
+
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li>
+            <a href="https://www.facebook.com/juanmolmos" target="_blank"><img class="social-image" src="../../../assets/img/facebook.png"></a>
+        </li>
+        <li>
+            <a href="https://www.instagram.com/juanmanuelolmos.cba/" target="_blank"><img class="social-image" src="../../../assets/img/instagram.png"></a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/in/juan-manuel-olmos" target="_blank"><img class="social-image" src="../../../assets/img/linkedin.png"></a>
+        </li>
+
+    </ul>
+    <div class="col-md-3 text-end">
+        <button id="btnLogin" type="button" class="btn btn-primary" style="margin: 10px;" (click)="modal.open(contenido, {centered:true})">{{ txtLogBtn }}</button>
+    </div>
+</header>
+
+<ng-template #contenido>
+
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="flex-direction: column">
+                <h4 style="margin:10px">Iniciar sesión</h4>
+                <div class="modal-body flex-nowrap">
+                    <div class="row">
+                        <label style="padding-left: initial;" for="txtUser">Usuario:</label>
+                        <input id="txtUser" type="text" class="form-control" aria-label="Usuario" aria-describedby="addon-wrapping">
+                    </div>
+                    <div class="mt-3 row">
+                        <label style="padding-left: initial;" for="txtPwd">Clave:</label>
+                        <input id="txtPwd" type="password" class="form-control" aria-label="Contraseña" aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+                <div class="row">
+                    <button id="btnEnviar" type="button" class="btn btn-primary" style="margin:10px" (click)="login()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</ng-template>

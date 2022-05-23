@@ -1,0 +1,35 @@
+<div class="card-body mat-card" id="proyects-card">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h5 class="card-title">Proyectos</h5>
+            </div>
+            <div class="col">
+                <input *ngIf="edicion" class="btn-actions" type="image" src="../../../assets/img/add.png">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10">
+                <h6>Portfolio Personal</h6>
+                <p>Desarrollo de portfolio personal usando el stack HTML/CSS/Javascript</p>
+
+            </div>
+            <div *ngIf="edicion" class="col">
+                <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png">
+                <input class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png">
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <h6>Sistema de registro de horas y obras - Espacio Ingenieria</h6>
+                    <p>Desarrollo de un sistema para registrar las horas de ingeniería civil dedicadas a cada obra de la empresa</p>
+
+                </div>
+                <div class="col">
+                    <input class="btn-actions" type="image" src="images/outline_delete_black_24dp.png">
+                    <input class="btn-actions" type="image" src="images/outline_edit_black_24dp.png">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="card mat-card">
+
+    <div class="background-image">
+        <img id="imgProfilePicture" src="../../../assets/img/juan.jpg" class="profile-image">
+    </div>
+
+    <div class="card-body">
+        <input *ngIf="edicion" class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png" onclick="mostrarEditProfile()">
+        <h4 id="hNombre" class="card-title">{{nombre}}</h4>
+        <p id="pTitulo" class="card-text">{{titulo}}</p>
+
+    </div>
+</div>
