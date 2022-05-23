@@ -27,7 +27,7 @@ export class ExperienciaComponent implements OnInit {
   
     });
     
-    this.experiencias = this.datos.getExperiencias();
+    this.experiencias = Array.from(this.datos.getExperiencias());
   
   
   }

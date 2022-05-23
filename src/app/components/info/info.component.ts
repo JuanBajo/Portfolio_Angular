@@ -13,23 +13,17 @@ export class InfoComponent implements OnInit {
   titulo: string='';
   constructor(  private servicio:LoginService, 
                 private datos:DatosService
-    ) {
-
-
-   }
+    ) {   }
   
   ngOnInit(): void {
     this.servicio.observable$.subscribe (activo => {
       this.edicion=activo;
-      console.log("ngoninit info"+this.edicion)
+      
     });
 
     this.nombre = this.datos.getPersona().nombre + ' ' + this.datos.getPersona().apellido;
     this.titulo = this.datos.getPersona().titulo;
-    
-    
+     
 
   }
-
-
 }

@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <h5 style="margin-bottom: 10px;" class="card-title">Experiencia</h5>
+                <h4 style="margin-bottom: 10px;" class="card-title">Experiencia</h4>
             </div>
 
             <div class="col">
@@ -12,7 +12,7 @@
         <div *ngFor="let exp of experiencias" class=" row ">
             <div class="col-10 ">
                 <p>{{ exp.fechaInicio | date: "yyyy" + " - "}}{{ exp.fechaFin | date: "yyyy" +": "}}{{exp.empresa + ": "}}{{exp.puesto}}</p>
-
+                <hr>
             </div>
             <div *ngIf="edicion " class="col">
                 <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png">

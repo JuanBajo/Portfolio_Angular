@@ -2,32 +2,33 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <h5 class="card-title">Proyectos</h5>
+                <h4 class="card-title">Proyectos</h4>
             </div>
             <div class="col">
                 <input *ngIf="edicion" class="btn-actions" type="image" src="../../../assets/img/add.png">
             </div>
         </div>
-        <div class="row">
+        <div *ngFor="let p of proyectos" class="row">
             <div class="col-10">
-                <h6>Portfolio Personal</h6>
-                <p>Desarrollo de portfolio personal usando el stack HTML/CSS/Javascript</p>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10">
+                        <h5>{{p.nombre}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10">
+                        <p>{{p.descripcion}}</p>
+                        <hr>
+                    </div>
+                </div>
+
 
             </div>
             <div *ngIf="edicion" class="col">
                 <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png">
                 <input class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png">
-            </div>
-            <div class="row">
-                <div class="col-10">
-                    <h6>Sistema de registro de horas y obras - Espacio Ingenieria</h6>
-                    <p>Desarrollo de un sistema para registrar las horas de ingeniería civil dedicadas a cada obra de la empresa</p>
-
-                </div>
-                <div class="col">
-                    <input class="btn-actions" type="image" src="images/outline_delete_black_24dp.png">
-                    <input class="btn-actions" type="image" src="images/outline_edit_black_24dp.png">
-                </div>
             </div>
         </div>
 
