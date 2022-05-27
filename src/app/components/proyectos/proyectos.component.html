@@ -2,35 +2,36 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <h4 class="card-title">Proyectos</h4>
+                <button class="btn btn-lg btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProyects" aria-expanded="false" aria-controls="collapseProyects">Proyectos</button>
             </div>
             <div class="col">
                 <input *ngIf="edicion" class="btn-actions" type="image" src="../../../assets/img/add.png">
             </div>
         </div>
-        <div *ngFor="let p of proyectos" class="row">
-            <div class="col-10">
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-10">
-                        <h5>{{p.nombre}}</h5>
+        <div class="collapse" id="collapseProyects">
+            <div *ngFor="let p of proyectos" class="row">
+                <div class="col-10 m-3">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <h5>{{p.nombre}}</h5>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-10">
-                        <p>{{p.descripcion}}</p>
-                        <hr>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <p>{{p.descripcion}}</p>
+                            <hr>
+                        </div>
                     </div>
-                </div>
 
 
-            </div>
-            <div *ngIf="edicion" class="col">
-                <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png">
-                <input class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png">
+                </div>
+                <div *ngIf="edicion" class="col">
+                    <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png">
+                    <input class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png">
+                </div>
             </div>
         </div>
-
     </div>
 </div>

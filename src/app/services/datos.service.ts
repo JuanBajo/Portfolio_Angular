@@ -143,7 +143,7 @@ export class DatosService {
       id: 3,
       fecha: "2008",
       nombre: "Creacion de registro maestro de materiales para Electroingenieria S.A.",
-      descripcion: "Desarrollo y Gestión del árbol de clasificación de Datos para SAP Master Material Recording: descripción técnica y clasificación de 70.000 materiales para ser utilizados por los departamentos de Ingeniería, Suministro, Logística, Mantenimiento de Equipos y Gestión de Almacenes de más de 30 grandes proyectos de infraestructura y empresas relacionadas con el grupo Electroingenieria ubicado en Argentina, Bolivia, Perú y Venezuela.",
+      descripcion: "Desarrollo y Gestión del árbol de clasificación de Datos para SAP Master Material Recording: descripción técnica y clasificación de 70.000 materiales para ser utilizados por los departamentos de Ingeniería, Suministro, Logística, Mantenimiento de Equipos y Gestión de Almacenes de más de 30 grandes proyectos de infraestructura y empresas relacionadas con el grupo Electroingenieria ubicado en Argentina, Bolivia, Perú y Venezuela. Tecnologia utilizada SAP R/3",
     }
   ];
 

@@ -65,3 +65,7 @@
     height: 20px;
     float: right;
 }
+
+body {
+    background-color: lightgray;
+}

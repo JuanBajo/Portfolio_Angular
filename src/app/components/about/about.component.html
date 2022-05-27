@@ -2,8 +2,10 @@
     <div class="container-fluid ">
         <div class="row">
             <div class="col-11">
-                <h4 class="card-title">Acerca de</h4>
-                <p id="pAboutText" class="w-100">{{ txtAbout }}</p>
+                <button class="btn btn-lg btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAbout" aria-expanded="false" aria-controls="collapseAbout">Acerca</button>
+                <div class="collapse m-3" id="collapseAbout">
+                    <p id="pAboutText" class="w-100">{{ txtAbout }}</p>
+                </div>
             </div>
 
             <div class="col">

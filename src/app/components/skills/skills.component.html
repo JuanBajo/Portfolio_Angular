@@ -2,20 +2,23 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <h4 class="card-title">Hard & Soft Skills</h4>
+                <button class="btn btn-lg btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSkills" aria-expanded="false" aria-controls="collapseSkills">Hard & Soft Skills</button>
             </div>
             <div class="col">
                 <input *ngIf="edicion" class="btn-actions" type="image" src="../../../assets/img/add.png">
             </div>
         </div>
-        <div *ngFor="let sk of skills" class="row">
-            <div class="col-11">
-                <h6>{{sk.skill}}</h6>
-                <progress style="width: 100% " max=100 [value]="sk.valor"></progress>
-            </div>
-            <div *ngIf=" edicion " class="col-1">
-                <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png ">
-                <input class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png ">
+        <div id="collapseSkills" class="collapse m-3">
+            <div *ngFor="let sk of skills" class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <h6>{{sk.skill}}</h6>
+                    <progress style="width: 100% " max=100 [value]="sk.valor"></progress>
+                </div>
+                <div *ngIf=" edicion " class="col-1">
+                    <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png ">
+                    <input class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png ">
+                </div>
             </div>
         </div>
     </div>
