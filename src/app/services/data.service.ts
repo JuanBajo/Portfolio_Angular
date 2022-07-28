@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { EventEmitter } from '@angular/core';
+
 import {
   Educacion,
   Experiencia,
@@ -8,7 +9,7 @@ import {
   Proyecto,
   Skills,
   Userlogin,
-} from './datos.service';
+} from './modelos.service';
 
 @Injectable({
   providedIn: 'root',
@@ -27,9 +28,18 @@ export class DataService {
     activo: false,
   };
 
-  constructor(private http: HttpClient) {}
+  private edicionActiva: Boolean = false;
+
+  observable$ = new EventEmitter<boolean>();
+
+  constructor(private http: HttpClient) //private data: DataService
+  {}
 
   Url = 'http://localhost:8080';
+
+  public getBtnActivos(): Boolean {
+    return this.edicionActiva;
+  }
 
   public async getIdActivo(): Promise<number> {
     return await new Promise((resolve, reject) => {
@@ -86,19 +96,41 @@ export class DataService {
   }
 
   public async login(username: string, pass: string): Promise<string> {
+
     let userLogin: Userlogin = {
       email: username,
       pass: pass,
-      token: "",
-      status: ""
-      
+      token: '',
+      status: '',
     };
 
     let body: String = JSON.stringify(userLogin);
+
     return await new Promise((resolve, reject) => {
       this.http
         .post<string>(this.Url + '/login', body)
         .subscribe((res) => resolve(res));
     });
+  }
+
+  public loginUsuario() {
+    this.login('jmolmos', 'pass').then((res) => {
+      let usrRes: Userlogin = {
+        email: '',
+        pass: '',
+        token: '',
+        status: '',
+      };
+      
+
+      Object.assign(usrRes, res);
+      sessionStorage.setItem("token", usrRes.token);
+      sessionStorage.setItem("currentUser", usrRes.email);
+      this.observable$.emit(true);
+      this.edicionActiva = true;
+      window.alert("usuario")
+      
+    });
+    
   }
 }

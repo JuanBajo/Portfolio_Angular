@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 //Servicios
-import { LoginService } from './services/login.service';
 
 
 //Componentes
@@ -39,7 +38,6 @@ import { InterceptorService } from './interceptor/interceptor.service';
     HttpClientModule
   ],
   providers: [
-    LoginService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
