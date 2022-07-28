@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
-import { DatosService } from 'src/app/services/datos.service';
+import { DatosService, Persona } from 'src/app/services/datos.service';
+import { DataService } from 'src/app/services/data.service';
+
+
 
 @Component({
   selector: 'app-info',
@@ -9,11 +12,27 @@ import { DatosService } from 'src/app/services/datos.service';
 })
 export class InfoComponent implements OnInit {
   edicion=false;
-  nombre: string='';
+  nombreCompleto: string='';
   titulo: string='';
+  p: Persona = {
+   
+    id: 0,
+    nombre: "",
+    apellido: "",
+    domicilio: "",
+    email: "",
+    url_foto: "" ,
+    titulo: "",
+    about: "",
+    activo: false
+  
+};
+  public idActivo: number = 0;
+    
   constructor(  private servicio:LoginService, 
-                private datos:DatosService
-    ) {   }
+                private datos:DatosService,
+                private data:DataService
+    ) {  }
   
   ngOnInit(): void {
     this.servicio.observable$.subscribe (activo => {
@@ -21,9 +40,16 @@ export class InfoComponent implements OnInit {
       
     });
 
-    this.nombre = this.datos.getPersona().nombre + ' ' + this.datos.getPersona().apellido;
-    this.titulo = this.datos.getPersona().titulo;
-     
+    this.data.getPersona().then(res => {
+      Object.assign(this.p,res);
+      this.titulo=this.p.titulo;
+      this.nombreCompleto=this.p.nombre + " "+ this.p.apellido;
+
+
+    });
+    
+    
 
   }
+
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
-import { DatosService, Persona } from 'src/app/services/datos.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-about',
@@ -10,14 +10,21 @@ import { DatosService, Persona } from 'src/app/services/datos.service';
 export class AboutComponent implements OnInit {
   edicion:boolean = false;
   txtAbout: string ='';
+  p: any = {};
+
   constructor(  private servicio:LoginService,
-                private datos:DatosService
+                private data: DataService
     ) { }
 
   ngOnInit(): void {
     this.servicio.observable$.subscribe (activo => { this.edicion=activo; });
-    this.txtAbout = this.datos.getPersona().about;
+    
+   
+    
+    this.data.getPersona().then( res => this.txtAbout = res.about)
+    
 
   }
+
 
 }

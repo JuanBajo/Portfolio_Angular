@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { DatosService, Proyecto } from 'src/app/services/datos.service';
+import { DataService } from 'src/app/services/data.service';
+
 
 @Component({
   selector: 'app-proyectos',
@@ -13,13 +15,26 @@ export class ProyectosComponent implements OnInit {
   proyectos: Proyecto[]=[];
 
   constructor( private servicio:LoginService,
-               private datos:DatosService
+               private datos:DatosService,
+               private data:DataService
     ) { }
 
   ngOnInit(): void {
     this.servicio.observable$.subscribe (activo => { this.edicion=activo; });
-    this.proyectos = Array.from(this.datos.getProyectos());
+    
+    this.data.getIdActivo().then(valor => {
+      this.data.getProyectos(valor).then(res => {
+        Object.assign(this.proyectos,res)
+      })
+    })
+
+
+    } 
+    
+
+
+
 
   }
 
-}
+

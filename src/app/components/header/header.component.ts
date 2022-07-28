@@ -21,10 +21,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
    
   }
-  public login(){
+  public async login(){
     this.servicio.loginUsuario();
     this.txtLogBtn='Logout';
-    console.log(this.servicio.getBtnActivos());
     this.modal.dismissAll();
 
   }

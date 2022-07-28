@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 
+
 export interface Persona{
   id: number,
   nombre: string,
@@ -10,6 +11,7 @@ export interface Persona{
   url_foto: string,
   titulo: string,
   about: string,
+  activo:boolean
 }
 
 export interface Experiencia {
@@ -44,13 +46,20 @@ export interface Proyecto{
   descripcion:string,
 }
 
+export interface Userlogin{
+  email: string,
+  pass: string,
+  token: string,
+  status: string,
+  
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatosService {
   
-  persona: Persona = {
+  /*persona: Persona = {
     id: 1 ,
     nombre: "Juan Manuel",
     apellido: "Olmos",
@@ -58,7 +67,8 @@ export class DatosService {
     email: "yo@yo.com",
     url_foto: "url@url.com",
     titulo: "Desarrollador Web Fullstack Junior - Especialista en Logística SAP - Técnico en electricidad y electrónica - Músico y sonidista",
-    about: "Entusiasta de la informatica, electronica, sonido y musica. Me gusta aprender cosas nuevas y colaborar en obtener soluciones a cualquier problema."
+    about: "Entusiasta de la informatica, electronica, sonido y musica. Me gusta aprender cosas nuevas y colaborar en obtener soluciones a cualquier problema.",
+    activo: true
 
   };
 
@@ -171,5 +181,5 @@ export class DatosService {
 
   public getProyectos(): Proyecto[]{
     return this.proyectos;
-  }
+  }*/
 }

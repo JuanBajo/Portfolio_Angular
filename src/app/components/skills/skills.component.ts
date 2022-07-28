@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { DatosService, Skills } from 'src/app/services/datos.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-skills',
@@ -9,17 +10,22 @@ import { DatosService, Skills } from 'src/app/services/datos.service';
 })
 export class SkillsComponent implements OnInit {
   edicion:boolean = false;
-  skills: Skills[]=[];
+  public skills: Skills[]=[];
   constructor(  private servicio:LoginService, 
-                private datos:DatosService
+                private datos:DatosService,
+                private data:DataService
     ) { }
 
   ngOnInit(): void {
     this.servicio.observable$.subscribe (activo => { this.edicion=activo; });
-    this.skills=Array.from(this.datos.getSkills());
+    
+    this.data.getIdActivo().then(valor => {
+      this.data.getSkills(valor).then(res => {
+        Object.assign(this.skills,res);
+      })
+    })
+
+
   }
 
-}
- function mostrar(){
-  console.log("clciked")
 }
