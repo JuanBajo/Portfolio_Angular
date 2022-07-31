@@ -2,26 +2,69 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <button class="btn btn-lg btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExp" aria-expanded="false" aria-controls="collapseExp">Experiencia</button>
+                <button class="btn btn-lg btn-light boton-transp" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExp" aria-expanded="false" aria-controls="collapseExp" (click)="toggleArrow()">{{arrow}} Experiencia laboral</button>
             </div>
 
             <div class="col">
-                <input *ngIf="edicion " class="btn-actions" type="image" src="../../../assets/img/add.png">
+                <input *ngIf="edicion" class="btn-actions" type="image" src="../../../assets/img/add.png" (click)="nuevaExperiencia()">
             </div>
         </div>
         <div class="collapse m-3" id="collapseExp">
             <div *ngFor="let exp of experiencias" class=" row ">
                 <div class="col-1"></div>
                 <div class="col-10 ">
-                    <p>{{ exp.fechaInicio | date: "yyyy" + " - "}}{{ exp.fechaFin | date: "yyyy" +": "}}{{exp.empresa + ": "}}{{exp.puesto}}</p>
+                    <p>{{ exp.fechaInicio | date: "yyyy" + " - "}}{{ exp.fechaFin | date: "yyyy" +": "}} {{exp.ciudad}} - {{exp.empresa + ": "}}{{exp.puesto}}</p>
                     <hr>
                 </div>
                 <div *ngIf="edicion " class="col">
-                    <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png">
-                    <input class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png ">
+                    <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png" (click)="borrarExperiencia(exp)">
+                    <input class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png " (click)="editarExperiencia(exp)">
                 </div>
             </div>
         </div>
 
     </div>
 </div>
+
+<ng-template #modalExp let-modal let-d="dismiss">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            {{ tituloModal }}
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="modal-body flex-nowrap">
+            <div class="row">
+                <label style="padding-left: initial;" for="txtFechaInicio">Fecha de inicio:</label>
+                <input id="txtFechaInicio" type="date" class="form-control" [(ngModel)]="editExp.fechaInicio">
+            </div>
+            <div class="mt-3 row">
+                <label style="padding-left: initial;" for="txtFechaFin">Fecha de finalización:</label>
+                <input id="txtFechaFin" type="date" class="form-control" [(ngModel)]="editExp.fechaFin">
+            </div>
+            <div class="mt-3 row">
+                <label style="padding-left: initial;" for="txtCiudad">Ciudad:</label>
+                <input id="txtCiudad" type="text" class="form-control" [(ngModel)]="editExp.ciudad">
+            </div>
+            <div class="mt-3 row">
+                <label style="padding-left: initial;" for="txtEmpresa">Empresa:</label>
+                <input id="txtEmpresa" class="form-control" [value]="editExp.empresa" [(ngModel)]="editExp.empresa">
+            </div>
+            <div class="mt-3 row">
+                <label style="padding-left: initial;" for="txtPuesto">Puesto:</label>
+                <textarea id="txtPuesto" class="form-control" [(ngModel)]="editExp.puesto">{{editExp.puesto}}</textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="guardarExperiencia()">
+            {{ captionBtnModal }}
+        </button>
+    </div>
+
+</ng-template>

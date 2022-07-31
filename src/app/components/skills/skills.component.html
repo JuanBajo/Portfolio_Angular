@@ -2,10 +2,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <button class="btn btn-lg btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSkills" aria-expanded="false" aria-controls="collapseSkills">Hard & Soft Skills</button>
+                <button class="btn btn-lg btn-light boton-transp" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSkills" aria-expanded="false" aria-controls="collapseSkills" (click)="toggleArrow()">{{arrow}} Hard & Soft Skills</button>
             </div>
             <div class="col">
-                <input *ngIf="edicion" class="btn-actions" type="image" src="../../../assets/img/add.png">
+                <input *ngIf="edicion" class="btn-actions" type="image" src="../../../assets/img/add.png" (click)="nuevaSkill()">
             </div>
         </div>
         <div id="collapseSkills" class="collapse m-3">
@@ -16,10 +16,41 @@
                     <progress style="width: 100% " max=100 [value]="sk.valor"></progress>
                 </div>
                 <div *ngIf=" edicion " class="col-1">
-                    <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png ">
-                    <input class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png ">
+                    <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png " (click)="borrarSkill(sk)">
+                    <input class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png " (click)="editarSkill(sk)">
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<ng-template #modalSkill let-modal let-d="dismiss">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            {{tituloModal}}
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="modal-body flex-nowrap">
+            <div class="row">
+                <label style="padding-left: initial;" for="txtSkNombre">Nombre de skill:</label>
+                <input id="txtSkNombre" type="text" class="form-control" [(ngModel)]="editSk.skill">
+            </div>
+            <div class="mt-3 row">
+                <label style="padding-left: initial;" for="txtSkValor">Valoración (número del 1 al 100):</label>
+                <input id="txtSkValor" type="text" class="form-control" [(ngModel)]="editSk.valor">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="guardarSkill()">
+            {{captionBtnModal}}
+        </button>
+    </div>
+
+</ng-template>

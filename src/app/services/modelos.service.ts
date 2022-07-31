@@ -20,8 +20,8 @@ export interface Experiencia {
     puesto: string,
     fechaInicio: string,
     fechaFin?: string,
-    esActual: boolean,
     ciudad: string,
+    persona_id: number
 
 }
 
@@ -31,12 +31,14 @@ export interface Educacion{
   carrera: string,
   fechaEgreso: string,
   descripcion: string,
+  persona_id:number
 }
 
 export interface Skills{
   id: number,
   skill: string,
   valor: number,
+  persona_id: number
 }
 
 export interface Proyecto{
@@ -44,6 +46,7 @@ export interface Proyecto{
   fecha: string,
   nombre: string,
   descripcion:string,
+  persona_id:number
 }
 
 export interface Userlogin{
@@ -51,6 +54,7 @@ export interface Userlogin{
   pass: string,
   token: string,
   status: string,
+  codStatus: number
   
 }
 

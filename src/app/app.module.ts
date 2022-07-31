@@ -15,9 +15,9 @@ import { ExperienciaComponent } from './components/experiencia/experiencia.compo
 import { EducacionComponent } from './components/educacion/educacion.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProyectosComponent } from './components/proyectos/proyectos.component';
-import { LoginComponent } from './components/login/login.component';
 import { InterceptorService } from './interceptor/interceptor.service';
-
+import { FormsModule } from '@angular/forms';
+ 
 
 @NgModule({
   declarations: [
@@ -28,14 +28,14 @@ import { InterceptorService } from './interceptor/interceptor.service';
     ExperienciaComponent,
     EducacionComponent,
     SkillsComponent,
-    ProyectosComponent,
-    LoginComponent
-    
+    ProyectosComponent
+        
   ],
   imports: [
     BrowserModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     {
@@ -43,6 +43,7 @@ import { InterceptorService } from './interceptor/interceptor.service';
       useClass: InterceptorService,
       multi: true
     }
+    
   ],
   bootstrap: [
     AppComponent

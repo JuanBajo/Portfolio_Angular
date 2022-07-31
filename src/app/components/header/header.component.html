@@ -18,32 +18,39 @@
 
     </ul>
     <div class="col-md-3 text-end">
-        <button id="btnLogin" type="button" class="btn btn-primary" style="margin: 10px;" (click)="modal.open(contenido, {centered:true})">{{ txtLogBtn }}</button>
+        <span>{{lblUser}}</span>
+        <button id="btnLogin" type="button" class="btn btn-primary" style="margin: 10px;" (click)="showModal()">{{ txtLogBtn }}</button>
     </div>
 </header>
 
-<ng-template #contenido>
 
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header" style="flex-direction: column">
-                <h4 style="margin:10px">Iniciar sesión</h4>
-                <div class="modal-body flex-nowrap">
-                    <div class="row">
-                        <label style="padding-left: initial;" for="txtUser">Usuario:</label>
-                        <input id="txtUser" type="text" class="form-control" aria-label="Usuario" aria-describedby="addon-wrapping">
-                    </div>
-                    <div class="mt-3 row">
-                        <label style="padding-left: initial;" for="txtPwd">Clave:</label>
-                        <input id="txtPwd" type="password" class="form-control" aria-label="Contraseña" aria-describedby="addon-wrapping">
-                    </div>
-                </div>
-                <div class="row">
-                    <button id="btnEnviar" type="button" class="btn btn-primary" style="margin:10px" (click)="login()">Enviar</button>
-                </div>
-            </div>
-        </div>
+
+<ng-template #modalLogin let-modal let-d="dismiss">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            Iniciar sesión
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
     </div>
 
+    <div class="modal-body">
+        <div class="modal-body flex-nowrap">
+            <div class="row">
+                <label style="padding-left: initial;" for="txtEmail">Correo electrónico:</label>
+                <input id="txtEmail" type="email" class="form-control" placeholder="usuario@dominio.com" [(ngModel)]="txtEmail">
+            </div>
+            <div class="mt-3 row">
+                <label style="padding-left: initial;" for="txtPass">Clave:</label>
+                <input id="txtPass" type="password" class="form-control" [(ngModel)]="txtPass">
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" (click)="login()" class="btn btn-primary">
+            Enviar
+        </button>
+    </div>
 
 </ng-template>

@@ -1,16 +1,56 @@
 <div class="card mat-card">
-
     <div class="background-image">
-        <img id="imgProfilePicture" src="../../../assets/img/juan.jpg" class="profile-image">
+        <img id="imgProfilePicture" src="../../../assets/img/juan.jpg" class="profile-image" />
     </div>
 
     <div class="card-body">
-        <input *ngIf="edicion" class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png" onclick="mostrarEditProfile()">
-        <h3 id="hNombre" class="card-title">{{nombreCompleto}}</h3>
-        <hr>
-        <p id="pTitulo" class="card-text">{{titulo}}</p>
+        <input *ngIf="edicion" (click)="editarInfo()" class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png" />
+        <h3 id="hNombre" class="card-title">{{ nombre }} {{ apellido }}</h3>
+        <hr />
+        <p id="pTitulo" class="card-text">{{ titulo }}</p>
+        <p id="pTitulo" class="card-text">{{ email }}</p>
+    </div>
+</div>
+
+<ng-template #modalInfo let-modal let-d="dismiss">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            Editar información de perfil
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="modal-body flex-nowrap">
+            <div class="row">
+                <label style="padding-left: initial;" for="txtInfoNombre">Nombre:</label>
+                <input id="txtInfoNombre" type="text" class="form-control" [(ngModel)]="p.nombre">
+            </div>
+            <div class="mt-3 row">
+                <label style="padding-left: initial;" for="txtInfoApellido">Apellido:</label>
+                <input id="txtInfoApellido" type="text" class="form-control" [(ngModel)]="p.apellido">
+            </div>
+            <div class="mt-3 row">
+                <label style="padding-left: initial;" for="txtInfoEmail">Correo electrónico:</label>
+                <input id="txtInfoEmail" type="text" class="form-control" [(ngModel)]="p.email">
+            </div>
+            <div class="mt-3 row">
+                <label style="padding-left: initial;" for="txtInfoTitulo">Titulo:</label>
+                <textarea id="txtInfoTitulo" type="text" class="form-control" [(ngModel)]="p.titulo">{{p.titulo}}</textarea>
+            </div>
+            <div class="mt-3 row">
+                <label style="padding-left: initial;" for="txtInfoAbout">Acerca:</label>
+                <textarea id="txtInfoAbout" class="form-control" [(ngModel)]="p.about">{{p.about}}</textarea>
+            </div>
+        </div>
 
     </div>
 
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="guardarInfo()">
+            Guardar cambios
+        </button>
+    </div>
 
-</div>
+</ng-template>

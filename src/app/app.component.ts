@@ -8,11 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   
-btnEdicion: boolean = false;
+/*btnEdicion: boolean = false;
 
 mostrar(){
   this.btnEdicion = !this.btnEdicion;
   console.log(this.btnEdicion);
 }
-
+*/
 }

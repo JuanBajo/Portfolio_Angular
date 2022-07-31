@@ -6,9 +6,10 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './about.component.html',
 })
 export class AboutComponent implements OnInit {
-  edicion: boolean = false;
-  txtAbout: string = '';
-  p: any = {};
+  public arrow:string = "►";
+  public edicion: boolean = false;
+  public txtAbout: string = '';
+  public p: any = {};
 
   constructor(private data: DataService) {}
 
@@ -17,6 +18,21 @@ export class AboutComponent implements OnInit {
       this.edicion = activo;
     });
 
-    this.data.getPersona().then((res) => (this.txtAbout = res.about));
+    this.data.actualizarDatos$.subscribe((actualizar)=>{
+      if(actualizar){
+        this.ngOnInit();
+      }
+    })
+
+    this.data.getPersona().then((res) => {
+      this.txtAbout = res.about
+    });
+      
+    
+  }
+
+  public toggleArrow(){
+    if(this.arrow === "►") { this.arrow="▼"; }
+    else { this.arrow="►"}
   }
 }

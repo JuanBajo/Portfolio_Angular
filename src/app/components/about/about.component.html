@@ -2,15 +2,11 @@
     <div class="container-fluid ">
         <div class="row">
             <div class="col-11">
-                <button class="btn btn-lg btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAbout" aria-expanded="false" aria-controls="collapseAbout">Acerca</button>
+                <button class="btn btn-lg btn-light boton-transp" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAbout" aria-expanded="false" aria-controls="collapseAbout" (click)="toggleArrow()">{{arrow}} Acerca</button>
                 <div class="collapse m-3" id="collapseAbout">
                     <p id="pAboutText" class="w-100">{{ txtAbout }}</p>
 
                 </div>
-            </div>
-
-            <div class="col">
-                <input *ngIf="edicion" onclick="mostrarEditAbout();" class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png" id="btnEditAbout">
             </div>
         </div>
     </div>

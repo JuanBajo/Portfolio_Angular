@@ -10,13 +10,14 @@ import {
   Skills,
   Userlogin,
 } from './modelos.service';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
   private idActivo: number = 0;
-  private p: Persona = {
+  /* private p: Persona = {
     id: 25,
     nombre: '',
     apellido: '',
@@ -26,16 +27,20 @@ export class DataService {
     titulo: '',
     about: '',
     activo: false,
-  };
+  };*/
 
   private edicionActiva: Boolean = false;
+  private Url = 'http://localhost:8080';
 
+  // Observables para comunicacion entre componentes
   observable$ = new EventEmitter<boolean>();
+  txtBtnLogEmitter = new EventEmitter<string>();
+  lblUsrEmitter = new EventEmitter<string>();
+  actualizarDatos$ = new EventEmitter<boolean>();
 
-  constructor(private http: HttpClient) //private data: DataService
-  {}
+  constructor(private http: HttpClient) {}
 
-  Url = 'http://localhost:8080';
+  // METODOS GET PARA OBTENER DATOS DE BD AL INICIAR LA APP Y RENDERIZAR
 
   public getBtnActivos(): Boolean {
     return this.edicionActiva;
@@ -45,7 +50,8 @@ export class DataService {
     return await new Promise((resolve, reject) => {
       this.http
         .get<number>(this.Url + '/id_activo')
-        .subscribe((res) => resolve(res));
+        .subscribe((res) => {
+          resolve(res)});
     });
   }
 
@@ -63,6 +69,7 @@ export class DataService {
         .get<Experiencia>(this.Url + '/ver_experiencias/' + id)
         .subscribe((res) => {
           resolve(res);
+          
         });
     });
   }
@@ -95,13 +102,14 @@ export class DataService {
     });
   }
 
+  // METODOS DE LOGIN PARA AUTENTICARSE EN EL BACKEND
   public async login(username: string, pass: string): Promise<string> {
-
     let userLogin: Userlogin = {
       email: username,
       pass: pass,
       token: '',
       status: '',
+      codStatus: 0,
     };
 
     let body: String = JSON.stringify(userLogin);
@@ -113,24 +121,60 @@ export class DataService {
     });
   }
 
-  public loginUsuario() {
-    this.login('jmolmos', 'pass').then((res) => {
-      let usrRes: Userlogin = {
-        email: '',
-        pass: '',
-        token: '',
-        status: '',
-      };
-      
+  public async loginUsuario(email:string, pass:string) {
+    let usrRes: Userlogin = {
+      email: '',
+      pass: '',
+      token: '',
+      status: '',
+      codStatus: 0,
+    };
 
+    this.login(email, pass).then((res) => {
       Object.assign(usrRes, res);
-      sessionStorage.setItem("token", usrRes.token);
-      sessionStorage.setItem("currentUser", usrRes.email);
-      this.observable$.emit(true);
-      this.edicionActiva = true;
-      window.alert("usuario")
-      
+
+      if (usrRes.codStatus == 1) {
+        sessionStorage.setItem('token', usrRes.token);
+        sessionStorage.setItem('currentUser', usrRes.email);
+        this.txtBtnLogEmitter.emit('Logout');
+        this.lblUsrEmitter.emit(usrRes.email);
+        this.observable$.emit(true);
+        this.edicionActiva = true;
+        Swal.fire('', usrRes.status, 'success');
+      } else {
+        Swal.fire('', usrRes.status, 'error');
+      }
     });
+  }
+
+  public logout() {
+    sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('token');
+    this.observable$.emit(false);
+    this.edicionActiva = false;
+    Swal.fire('Se ha finalizado la sesión', '', 'success');
+  }
+
+  //METODOS DE ABM
+
+  public async guardarDatos(endpoint:string, body:string) {
     
+    return await new Promise((resolve, reject) => {
+      this.http
+        .post<any>(this.Url + endpoint, body)
+        .subscribe((res) => {
+          resolve(res);
+          this.actualizarDatos$.emit(true);
+          
+        });
+    });
+  }
+
+  public async borrarDatos(endpoint:string, id: number): Promise<any> {
+    return await new Promise((resolve, reject) => {
+      this.http.delete(this.Url + endpoint + id).subscribe((res) => {
+        resolve(res);
+      });
+    });
   }
 }

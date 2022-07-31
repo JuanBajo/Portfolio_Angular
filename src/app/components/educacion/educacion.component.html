@@ -2,25 +2,65 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <button class="btn btn-lg btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEdu" aria-expanded="false" aria-controls="collapseEdu">Educación</button>
+                <button class="btn btn-lg btn-light boton-transp" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEdu" aria-expanded="false" aria-controls="collapseEdu" (click)="toggleArrow()">{{arrow}} Experiencia académica</button>
             </div>
             <div class="col">
-                <input *ngIf="edicion" class="btn-actions" type="image" src="../../../assets/img/add.png">
+                <input *ngIf="edicion" class="btn-actions" type="image" src="../../../assets/img/add.png" (click)="nuevaEducacion()">
             </div>
         </div>
         <div class="collapse m-3" id="collapseEdu">
             <div *ngFor="let edu of educacion" class="row">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <p>{{edu.fechaEgreso + ": " + edu.carrera + " (" + edu.institucion +") "}}</p>
+                    <p>{{edu.fechaEgreso | date: "yyyy" }} : {{ edu.carrera }} ({{edu.institucion}})</p>
                     <hr>
                 </div>
                 <div *ngIf="edicion" class="col">
-                    <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png">
-                    <input class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png">
+                    <input class="btn-actions" type="image" src="../../../assets/img/outline_delete_black_24dp.png" (click)="borrarEducacion(edu)">
+                    <input class="btn-actions" type="image" src="../../../assets/img/outline_edit_black_24dp.png" (click)="editarEducacion(edu)">
                 </div>
             </div>
         </div>
 
     </div>
 </div>
+
+<ng-template #modalEdu let-modal let-d="dismiss">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            {{tituloModal}}
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="modal-body flex-nowrap">
+            <div class="row">
+                <label style="padding-left: initial;" for="txtEduFechaEgreso">Fecha de egreso:</label>
+                <input id="txtEduFechaEgreso" type="date" class="form-control" [(ngModel)]="editEdu.fechaEgreso">
+            </div>
+            <div class="mt-3 row">
+                <label style="padding-left: initial;" for="txtEduInstitucion">Institución:</label>
+                <input id="txtEduInstitucion" type="text" class="form-control" [(ngModel)]="editEdu.institucion">
+            </div>
+            <div class="mt-3 row">
+                <label style="padding-left: initial;" for="txtEduCarrera">Carrera:</label>
+                <input id="txtEduCarrera" type="text" class="form-control" [(ngModel)]="editEdu.carrera">
+            </div>
+            <div class="mt-3 row">
+                <label style="padding-left: initial;" for="txtEduDesc">Descripción:</label>
+                <input id="txtEduDesc" type="text" class="form-control" [(ngModel)]="editEdu.descripcion">
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="guardarEducacion()">
+            {{captionBtnModal}}
+        </button>
+    </div>
+
+</ng-template>
