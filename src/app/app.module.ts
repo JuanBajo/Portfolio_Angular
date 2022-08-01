@@ -5,7 +5,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 //Servicios
 
-
 //Componentes
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -17,9 +16,8 @@ import { SkillsComponent } from './components/skills/skills.component';
 import { ProyectosComponent } from './components/proyectos/proyectos.component';
 import { InterceptorService } from './interceptor/interceptor.service';
 import { FormsModule } from '@angular/forms';
- 
 
-@NgModule({
+@NgModule({ 
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -28,25 +26,16 @@ import { FormsModule } from '@angular/forms';
     ExperienciaComponent,
     EducacionComponent,
     SkillsComponent,
-    ProyectosComponent
-        
+    ProyectosComponent,
   ],
-  imports: [
-    BrowserModule,
-    NgbModule,
-    HttpClientModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, NgbModule, HttpClientModule, FormsModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
-      multi: true
-    }
-    
+      multi: true,
+    },
   ],
-  bootstrap: [
-    AppComponent
-  ]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

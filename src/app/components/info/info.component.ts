@@ -10,19 +10,17 @@ import { AboutComponent } from '../about/about.component';
   templateUrl: './info.component.html',
 })
 export class InfoComponent implements OnInit {
-  
   @ViewChild('modalInfo') modalInfo: any;
 
-// Propiedades para mostrar datos en html
+  // Propiedades para mostrar datos en html
   public edicion = false;
   public nombre: string = '';
   public apellido: string = '';
   public titulo: string = '';
-  public email:string = '';
-  public about:string = '';
-  
-  
-// Objeto persona para tranferir al servicio de datos.
+  public email: string = '';
+  public about: string = '';
+
+  // Objeto persona para tranferir al servicio de datos.
   public p: Persona = {
     id: 0,
     nombre: '',
@@ -36,10 +34,7 @@ export class InfoComponent implements OnInit {
   };
   public idActivo: number = 0;
 
-  constructor(  private data: DataService,
-                private modal:NgbModal
-    
-    ) {}
+  constructor(private data: DataService, private modal: NgbModal) {}
 
   ngOnInit(): void {
     this.data.observable$.subscribe((activo) => {
@@ -51,24 +46,20 @@ export class InfoComponent implements OnInit {
       this.titulo = this.p.titulo;
       this.nombre = this.p.nombre;
       this.apellido = this.p.apellido;
-      this.email=this.p.email;
+      this.email = this.p.email;
     });
   }
- 
-  public editarInfo(){
-    this.modal.open(this.modalInfo,{centered:true});
+
+  public editarInfo() {
+    this.modal.open(this.modalInfo, { centered: true });
   }
 
-  public guardarInfo(){
+  public guardarInfo() {
     let body = JSON.stringify(this.p);
-    this.data.guardarDatos('/crear/persona', body).then((res)=>{
-      Swal.fire("", "Guardado","success")
-      this.ngOnInit()
+    this.data.guardarDatos('/crear/persona', body).then((res) => {
+      Swal.fire('', 'Guardado', 'success');
+      this.ngOnInit();
       this.modal.dismissAll();
-    })
-
+    });
   }
-  
-
-
 }

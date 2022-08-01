@@ -13,16 +13,21 @@ import { Observable } from 'rxjs';
 })
 export class InterceptorService implements HttpInterceptor {
   constructor() {}
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     let token = sessionStorage.getItem('token');
     if (token == null) {
       token = '0';
     }
-    let headers = new HttpHeaders({ "Authorization": token, "Access-Control-Allow-Origin": "*", "Content-Type":"application/json" });
-    let reqClone = req.clone({headers});
+    let headers = new HttpHeaders({
+      Authorization: token,
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+    });
+    let reqClone = req.clone({ headers });
 
-    
     return next.handle(reqClone);
   }
 }

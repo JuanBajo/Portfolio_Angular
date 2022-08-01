@@ -17,18 +17,6 @@ import Swal from 'sweetalert2';
 })
 export class DataService {
   private idActivo: number = 0;
-  /* private p: Persona = {
-    id: 25,
-    nombre: '',
-    apellido: '',
-    domicilio: '',
-    email: '',
-    url_foto: '',
-    titulo: '',
-    about: '',
-    activo: false,
-  };*/
-
   private edicionActiva: Boolean = false;
   private Url = 'http://localhost:8080';
 
@@ -48,10 +36,9 @@ export class DataService {
 
   public async getIdActivo(): Promise<number> {
     return await new Promise((resolve, reject) => {
-      this.http
-        .get<number>(this.Url + '/id_activo')
-        .subscribe((res) => {
-          resolve(res)});
+      this.http.get<number>(this.Url + '/id_activo').subscribe((res) => {
+        resolve(res);
+      });
     });
   }
 
@@ -69,7 +56,6 @@ export class DataService {
         .get<Experiencia>(this.Url + '/ver_experiencias/' + id)
         .subscribe((res) => {
           resolve(res);
-          
         });
     });
   }
@@ -121,7 +107,7 @@ export class DataService {
     });
   }
 
-  public async loginUsuario(email:string, pass:string) {
+  public async loginUsuario(email: string, pass: string) {
     let usrRes: Userlogin = {
       email: '',
       pass: '',
@@ -157,20 +143,16 @@ export class DataService {
 
   //METODOS DE ABM
 
-  public async guardarDatos(endpoint:string, body:string) {
-    
+  public async guardarDatos(endpoint: string, body: string) {
     return await new Promise((resolve, reject) => {
-      this.http
-        .post<any>(this.Url + endpoint, body)
-        .subscribe((res) => {
-          resolve(res);
-          this.actualizarDatos$.emit(true);
-          
-        });
+      this.http.post<any>(this.Url + endpoint, body).subscribe((res) => {
+        resolve(res);
+        this.actualizarDatos$.emit(true);
+      });
     });
   }
 
-  public async borrarDatos(endpoint:string, id: number): Promise<any> {
+  public async borrarDatos(endpoint: string, id: number): Promise<any> {
     return await new Promise((resolve, reject) => {
       this.http.delete(this.Url + endpoint + id).subscribe((res) => {
         resolve(res);
