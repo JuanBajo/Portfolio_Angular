@@ -13,7 +13,8 @@
             <div *ngFor="let exp of experiencias" class=" row ">
                 <div class="col-1"></div>
                 <div class="col-10 ">
-                    <p>{{ exp.fechaInicio | date: "yyyy" + " - "}}{{ exp.fechaFin | date: "yyyy" +": "}} {{exp.ciudad}} - {{exp.empresa + ": "}}{{exp.puesto}}</p>
+                    <p>{{ exp.fechaInicio | date: "yyyy" + " - "}}{{ exp.fechaFin | date: "yyyy" +": "}} {{exp.ciudad}}</p>
+                    <p>{{exp.empresa + ": "}}{{exp.puesto}}</p>
                     <hr>
                 </div>
                 <div *ngIf="edicion " class="col">

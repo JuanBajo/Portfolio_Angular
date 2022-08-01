@@ -5,7 +5,7 @@
                 <button class="btn btn-lg btn-light boton-transp" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProyects" aria-expanded="false" aria-controls="collapseProyects" (click)="toggleArrow()">{{arrow}} Proyectos</button>
             </div>
             <div class="col">
-                <input *ngIf="edicion" class="btn-actions" type="image" src="../../../assets/img/add.png">
+                <input *ngIf="edicion" class="btn-actions" type="image" src="../../../assets/img/add.png" (click)="nuevoProyecto()">
             </div>
         </div>
         <div class="collapse" id="collapseProyects">

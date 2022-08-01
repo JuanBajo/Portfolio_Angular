@@ -85,7 +85,7 @@ export class ProyectosComponent implements OnInit {
 
   }
 
-  public nuevaEducacion(){
+  public nuevoProyecto(){
     this.tituloModal = "Nueva proyecto";
     this.captionBtnModal = "Guardar";
     this.editPro = {

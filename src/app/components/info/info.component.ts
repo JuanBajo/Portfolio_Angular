@@ -21,6 +21,7 @@ export class InfoComponent implements OnInit {
   public email:string = '';
   public about:string = '';
   
+  
 // Objeto persona para tranferir al servicio de datos.
   public p: Persona = {
     id: 0,
@@ -28,7 +29,7 @@ export class InfoComponent implements OnInit {
     apellido: '',
     domicilio: '',
     email: '',
-    url_foto: '',
+    foto: '',
     titulo: '',
     about: '',
     activo: true,
@@ -53,7 +54,7 @@ export class InfoComponent implements OnInit {
       this.email=this.p.email;
     });
   }
-
+ 
   public editarInfo(){
     this.modal.open(this.modalInfo,{centered:true});
   }
@@ -67,6 +68,7 @@ export class InfoComponent implements OnInit {
     })
 
   }
+  
 
 
 }

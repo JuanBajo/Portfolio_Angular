@@ -8,7 +8,7 @@ export interface Persona{
   apellido: string,
   domicilio: string,
   email: string,
-  url_foto: string,
+  foto: string,
   titulo: string,
   about: string,
   activo:boolean

@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
   }
   
   public login() {
-        console.log(this.txtEmail)
+    
     var emailReg =  /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     if (emailReg.test(this.txtEmail)){
       this.data.loginUsuario(this.txtEmail, this.txtPass);

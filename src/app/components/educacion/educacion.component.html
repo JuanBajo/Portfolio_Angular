@@ -12,7 +12,7 @@
             <div *ngFor="let edu of educacion" class="row">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <p>{{edu.fechaEgreso | date: "yyyy" }} : {{ edu.carrera }} ({{edu.institucion}})</p>
+                    <p>{{edu.fechaEgreso | date: "yyyy" }} : {{ edu.carrera }} - {{edu.descripcion}} ({{edu.institucion}})</p>
                     <hr>
                 </div>
                 <div *ngIf="edicion" class="col">
