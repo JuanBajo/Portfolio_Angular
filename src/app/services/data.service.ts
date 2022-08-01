@@ -18,7 +18,7 @@ import Swal from 'sweetalert2';
 export class DataService {
   private idActivo: number = 0;
   private edicionActiva: Boolean = false;
-  private Url = 'http://localhost:8080';
+  private Url = 'https://mysterious-hamlet-70822.herokuapp.com';
 
   // Observables para comunicacion entre componentes
   observable$ = new EventEmitter<boolean>();
